@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Form from "../src/Components/Form";
+import Articles from "./Components/Articles";
+import GlobalContext from "./Hooks/GlobalContext";
 
 function App() {
+  const [articles, setArticles] = useState([]);
+  const [index, setIndex] = useState(0);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <GlobalContext.Provider
+        value={{ articles, setArticles, index, setIndex }}
+      >
+        <Form />
+        <Articles />
+      </GlobalContext.Provider>
     </div>
   );
 }
